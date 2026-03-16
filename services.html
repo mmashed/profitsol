@@ -446,6 +446,45 @@
       .services-cta { flex-direction: column; align-items: flex-start; padding: 28px; }
       .cases-grid { grid-template-columns: 1fr; }
     }
+
+    /* бургер */
+    .burger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      background: none; border: none;
+      cursor: pointer; padding: 4px;
+      justify-self: end;
+    }
+    .burger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--accent); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg); z-index: 99;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.25s;
+    }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu a {
+      font-size: 28px; font-weight: 800; letter-spacing: -0.02em;
+      color: var(--accent); text-decoration: none; transition: opacity 0.2s;
+    }
+    .mobile-menu a:hover { opacity: 0.5; }
+    .mobile-menu .mobile-phone { font-size: 16px; font-weight: 500; color: var(--muted); margin-top: 8px; }
+
+    @media (max-width: 900px) {
+      header { padding: 16px 24px; grid-template-columns: 1fr auto; }
+      header nav, header .header-right { display: none; }
+      .burger { display: flex; }
+    }
+
   </style>
 </head>
 <body>
@@ -473,19 +512,31 @@
     </div>
   </div>
 
+  <!-- мобильное меню -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/" onclick="closeMobile()">главная</a>
+    <a href="/services" onclick="closeMobile()">услуги</a>
+    <a href="/#pricing" onclick="closeMobile()">тарифы</a>
+    <a href="/contacts" onclick="closeMobile()">контакты</a>
+    <a href="tel:88002502562" class="mobile-phone">8 800 250 25 62</a>
+  </div>
+
   <!-- HEADER -->
   <header>
     <a href="/" class="header-logo"><span>логотип</span></a>
     <nav>
       <a href="/">главная</a>
       <a href="/services" class="active">услуги</a>
-      <a href="/pricing">тарифы</a>
+      <a href="/#pricing">тарифы</a>
       <a href="/contacts">контакты</a>
     </nav>
     <div class="header-right">
       <a href="tel:88002502562" class="header-phone">8 800 250 25 62</a>
       <a href="#" class="btn-dark btn-sm open-modal">бесплатный<br/>экспресс-аудит</a>
     </div>
+    <button class="burger" id="burger" aria-label="меню">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
   <!-- HERO -->
@@ -827,7 +878,7 @@
     <nav class="footer-nav">
       <a href="/">главная</a>
       <a href="/services">услуги</a>
-      <a href="/pricing">тарифы</a>
+      <a href="/#pricing">тарифы</a>
       <a href="/contacts">контакты</a>
     </nav>
     <div class="footer-right">
@@ -866,6 +917,23 @@
       const card = btn.closest('.case-card');
       card.classList.toggle('open');
     }
+
+    // бургер
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    burger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      mobileMenu.style.display = open ? 'flex' : 'none';
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    function closeMobile() {
+      mobileMenu.classList.remove('open');
+      burger.classList.remove('open');
+      mobileMenu.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
   </script>
 
 </body>
