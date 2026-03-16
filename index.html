@@ -44,7 +44,7 @@
       width: 180px; height: 60px;
       background: var(--border); border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      justify-self: start;
+      justify-self: start; text-decoration: none;
     }
     .header-logo span { font-size: 11px; color: var(--muted); }
 
@@ -53,7 +53,7 @@
       font-size: 14px; font-weight: 500; color: #4A4A4A;
       text-decoration: none; transition: color 0.2s; white-space: nowrap;
     }
-    nav a:hover { color: var(--accent); }
+    nav a:hover, nav a.active { color: var(--accent); }
 
     .header-right { display: flex; align-items: center; gap: 24px; justify-self: end; }
 
@@ -76,6 +76,54 @@
     .btn-md  { padding: 14px 24px; font-size: 14px; }
     .btn-lg  { padding: 16px 48px; font-size: 16px; }
 
+    /* бургер */
+    .burger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      background: none; border: none;
+      cursor: pointer; padding: 4px;
+      justify-self: end;
+    }
+    .burger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--accent); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* мобильное меню */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mobile-menu a {
+      font-size: 28px; font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--accent); text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .mobile-menu a:hover { opacity: 0.5; }
+    .mobile-menu .mobile-phone {
+      font-size: 16px; font-weight: 500;
+      color: var(--muted); margin-top: 8px;
+    }
+
     /* ─── HERO ─── */
     .hero {
       display: grid; grid-template-columns: 2fr 1fr;
@@ -92,6 +140,7 @@
     .hero-tagline { font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 420px; }
     .hero-right { display: flex; flex-direction: column; align-items: center; }
 
+    /* орбита */
     .orbit-wrapper { position: relative; width: 320px; height: 320px; flex-shrink: 0; }
     .orbit-ring { position: absolute; inset: 0; border-radius: 50%; border: 1px dashed var(--dashed); }
     .orbit-item { position: absolute; top: 50%; left: 50%; width: 0; height: 0; }
@@ -104,8 +153,8 @@
     .orbit-item:nth-child(8) { animation: spin 20s linear infinite; animation-delay: calc(-6 * 20s / 7); }
 
     @keyframes spin {
-      from { transform: rotate(0deg)   translateX(160px) rotate(0deg); }
-      to   { transform: rotate(360deg) translateX(160px) rotate(-360deg); }
+      from { transform: rotate(0deg)   translateX(var(--orbit-r, 160px)) rotate(0deg); }
+      to   { transform: rotate(360deg) translateX(var(--orbit-r, 160px)) rotate(-360deg); }
     }
 
     .orbit-label {
@@ -113,7 +162,7 @@
       transform: translate(-50%, -50%);
       white-space: nowrap; background: #fff;
       border: 1px solid var(--border); border-radius: 100px;
-      padding: 8px 16px; font-size: 13px; font-weight: 500;
+      padding: 6px 12px; font-size: 12px; font-weight: 500;
       color: var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       pointer-events: none;
     }
@@ -131,63 +180,49 @@
       position: relative; z-index: 2;
     }
 
-    /* ─── SCREEN 2: ПРЕИМУЩЕСТВА ─── */
+    /* ─── SCREEN 2 ─── */
     .advantages-section {
       padding: 80px 72px;
-      position: relative;
-      overflow: visible;
-    }
-
-    /* пунктирный svg — позиционируется JS-ом */
-    .dashed-svg-container {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: visible;
+      position: relative; overflow: visible;
     }
 
     .dashed-line {
-      fill: none;
-      stroke: var(--dashed);
-      stroke-width: 1.5;
-      stroke-dasharray: 6 5;
+      fill: none; stroke: var(--dashed);
+      stroke-width: 1.5; stroke-dasharray: 6 5;
       stroke-linecap: round;
       animation: dashFlow 1.5s linear infinite;
     }
-
     @keyframes dashFlow { to { stroke-dashoffset: -22; } }
 
-    /* ── карточки-карусель ── */
     .advantages-stage {
       position: relative;
-      /* высота задаётся JS-ом */
-      max-width: 1400px;
-      margin: 0 auto;
-      z-index: 1;
+      max-width: 1400px; margin: 0 auto; z-index: 1;
     }
 
     .adv-card {
       position: absolute;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 24px 24px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 24px 24px;
       font-size: 15px; font-weight: 500; line-height: 1.45;
-      /* плавный полёт */
-      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-                  opacity  0.35s ease;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
       will-change: transform;
     }
-
     .adv-card::before {
-      content: '';
-      display: block;
+      content: ''; display: block;
       width: 100%; height: 1.5px;
-      background: var(--accent);
-      border-radius: 2px;
-      margin-bottom: 20px;
+      background: var(--accent); border-radius: 2px; margin-bottom: 20px;
+    }
+
+    /* мобильная карусель — обычный поток */
+    .adv-card-mobile {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px 18px;
+      font-size: 14px; font-weight: 500; line-height: 1.45;
+    }
+    .adv-card-mobile::before {
+      content: ''; display: block;
+      width: 100%; height: 1.5px;
+      background: var(--accent); border-radius: 2px; margin-bottom: 14px;
     }
 
     .section-footnote {
@@ -202,14 +237,12 @@
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 16px; margin-bottom: 48px;
     }
-
     .pricing-card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 36px 32px;
       display: flex; flex-direction: column; gap: 24px;
     }
     .pricing-card.featured { border-color: var(--accent); }
-
     .pricing-header { display: flex; flex-direction: column; gap: 8px; }
     .pricing-name {
       font-size: 12px; font-weight: 700;
@@ -217,7 +250,6 @@
     }
     .pricing-price { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; }
     .pricing-period { font-size: 14px; color: var(--muted); }
-
     .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; }
     .pricing-features li {
       font-size: 14px; color: #3A3A3A;
@@ -228,7 +260,6 @@
       width: 5px; height: 5px; border-radius: 50%;
       background: var(--accent); flex-shrink: 0;
     }
-
     .pricing-why {
       text-align: center; font-size: 15px; color: var(--muted);
       line-height: 1.6; max-width: 680px; margin: 0 auto 32px;
@@ -266,6 +297,7 @@
       background: #fff; border-radius: 24px; padding: 48px;
       width: 100%; max-width: 480px; position: relative;
       transform: translateY(16px); transition: transform 0.25s;
+      margin: 16px;
     }
     .modal-overlay.active .modal { transform: translateY(0); }
     .modal-close {
@@ -307,6 +339,7 @@
     .footer-logo {
       width: 140px; height: 48px; background: var(--border);
       border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
     }
     .footer-logo span { font-size: 11px; color: var(--muted); }
     .footer-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
@@ -317,24 +350,80 @@
     .footer-copy { font-size: 12px; color: var(--muted); text-align: right; line-height: 1.5; }
     .footer-reqs { font-size: 11px; color: #B0B0A8; text-align: right; line-height: 1.6; }
 
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
-      header { padding: 16px 24px; grid-template-columns: 1fr auto; }
-      nav { display: none; }
-      .hero { grid-template-columns: 1fr; padding: 40px 24px; }
+      /* header */
+      header {
+        padding: 16px 24px;
+        grid-template-columns: 1fr auto;
+      }
+      header nav, header .header-right { display: none; }
+      .burger { display: flex; }
+
+      /* hero */
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 32px 24px 40px;
+        gap: 40px;
+      }
+      .hero-bottom { margin-top: 32px; }
       .hero-right { align-items: flex-start; }
-      .hero-price { margin-top: 32px; }
-      .hero-bottom { margin-top: 40px; }
-      .advantages-section { padding: 48px 24px; }
-      .section { padding: 48px 24px; }
-      .section-divider { margin: 0 24px; }
+
+      /* орбита: уменьшаем до 220px */
+      .orbit-wrapper { width: 220px; height: 220px; }
+      .orbit-item { --orbit-r: 110px; }
+      .orbit-item:nth-child(2) { animation-name: spinMobile; }
+      .orbit-item:nth-child(3) { animation-name: spinMobile; }
+      .orbit-item:nth-child(4) { animation-name: spinMobile; }
+      .orbit-item:nth-child(5) { animation-name: spinMobile; }
+      .orbit-item:nth-child(6) { animation-name: spinMobile; }
+      .orbit-item:nth-child(7) { animation-name: spinMobile; }
+      .orbit-item:nth-child(8) { animation-name: spinMobile; }
+
+      @keyframes spinMobile {
+        from { transform: rotate(0deg)   translateX(110px) rotate(0deg); }
+        to   { transform: rotate(360deg) translateX(110px) rotate(-360deg); }
+      }
+
+      .orbit-label { font-size: 10px; padding: 5px 10px; }
+      .hero-price { margin-top: 24px; font-size: 24px; }
+
+      /* преимущества — прячем stage, показываем мобильную сетку */
+      .advantages-section { padding: 40px 24px; }
+      #advStage { display: none; }
+      .adv-grid-mobile {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      #dashedSvg { display: none; }
+      .section-footnote { margin-top: 24px; font-size: 14px; }
+
+      /* тарифы */
       .pricing-grid { grid-template-columns: 1fr; }
+      .section { padding: 40px 24px; }
+      .section-divider { margin: 0 24px; }
+
+      /* footer */
       footer { grid-template-columns: 1fr; padding: 40px 24px; }
       .footer-right { align-items: flex-start; }
       .footer-copy, .footer-reqs { text-align: left; }
     }
+
+    /* мобильная сетка скрыта на десктопе */
+    .adv-grid-mobile { display: none; }
   </style>
 </head>
 <body>
+
+  <!-- мобильное меню -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/" onclick="closeMobile()">главная</a>
+    <a href="/services" onclick="closeMobile()">услуги</a>
+    <a href="/#pricing" onclick="closeMobile()">тарифы</a>
+    <a href="/contacts" onclick="closeMobile()">контакты</a>
+    <a href="tel:88002502562" class="mobile-phone">8 800 250 25 62</a>
+  </div>
 
   <!-- MODAL -->
   <div class="modal-overlay" id="modal">
@@ -361,17 +450,20 @@
 
   <!-- HEADER -->
   <header>
-    <div class="header-logo"><span>логотип</span></div>
+    <a href="/" class="header-logo"><span>логотип</span></a>
     <nav>
-      <a href="#">главная</a>
-      <a href="#advantages">услуги</a>
-      <a href="#pricing">тарифы</a>
-      <a href="#faq">контакты</a>
+      <a href="/" class="active">главная</a>
+      <a href="/services">услуги</a>
+      <a href="/#pricing">тарифы</a>
+      <a href="/contacts">контакты</a>
     </nav>
     <div class="header-right">
       <a href="tel:88002502562" class="header-phone">8 800 250 25 62</a>
       <a href="#" class="btn-dark btn-sm open-modal">бесплатный<br/>экспресс-аудит</a>
     </div>
+    <button class="burger" id="burger" aria-label="меню">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
   <!-- ЭКРАН 1: HERO -->
@@ -387,10 +479,10 @@
       <div class="orbit-wrapper">
         <div class="orbit-ring"></div>
         <div class="orbit-item"><span class="orbit-label">1С: УТ</span></div>
-        <div class="orbit-item"><span class="orbit-label">1С: Документооборот</span></div>
         <div class="orbit-item"><span class="orbit-label">1С: КА</span></div>
         <div class="orbit-item"><span class="orbit-label">1С: УНФ</span></div>
         <div class="orbit-item"><span class="orbit-label">1С: Розница</span></div>
+        <div class="orbit-item"><span class="orbit-label">1С: Документооборот</span></div>
         <div class="orbit-item"><span class="orbit-label">1С: Бухгалтерия</span></div>
         <div class="orbit-item"><span class="orbit-label">1С: ЗУП</span></div>
       </div>
@@ -400,7 +492,7 @@
 
   <hr class="section-divider" />
 
-  <!-- обёртка для пунктира — охватывает экраны 2 и 3 -->
+  <!-- обёртка для пунктира -->
   <div style="position:relative;" id="dashedZone">
 
     <svg id="dashedSvg" style="position:absolute;top:0;left:0;width:100%;pointer-events:none;z-index:0;overflow:visible;" preserveAspectRatio="none">
@@ -411,8 +503,10 @@
     <section class="advantages-section" id="advantages">
       <div style="max-width:1400px;margin:0 auto;position:relative;z-index:1;">
         <h2 class="section-title" id="advTitle">При сотрудничестве с нами</h2>
-        <!-- карточки рендерятся JS-ом -->
+        <!-- десктоп: карусель -->
         <div class="advantages-stage" id="advStage"></div>
+        <!-- мобильный: статичная сетка -->
+        <div class="adv-grid-mobile" id="advGridMobile"></div>
         <p class="section-footnote" id="advFootnote">мы подойдём друг другу, если вы в оптовой торговле или дистрибуции и нуждаетесь в 1C без переплаты «брендовым» интеграторам.</p>
       </div>
     </section>
@@ -472,7 +566,7 @@
       </div>
     </section>
 
-  </div><!-- /dashedZone -->
+  </div>
 
   <hr class="section-divider" />
 
@@ -546,14 +640,14 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-left">
-      <div class="footer-logo"><span>логотип</span></div>
+      <a href="/" class="footer-logo"><span>логотип</span></a>
       <p class="footer-desc">комплексное сопровождение 1С по всей России.</p>
     </div>
     <nav class="footer-nav">
-      <a href="#">главная</a>
-      <a href="#advantages">услуги</a>
-      <a href="#pricing">тарифы</a>
-      <a href="#faq">контакты</a>
+      <a href="/">главная</a>
+      <a href="/services">услуги</a>
+      <a href="/#pricing">тарифы</a>
+      <a href="/contacts">контакты</a>
     </nav>
     <div class="footer-right">
       <p class="footer-copy">© 2026 ИП Пак Дмитрий Анатольевич.<br/>Все права защищены.</p>
@@ -562,6 +656,24 @@
   </footer>
 
   <script>
+    /* ─── БУРГЕР ─── */
+    const burger     = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    burger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      mobileMenu.style.display = open ? 'flex' : 'none';
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    function closeMobile() {
+      mobileMenu.classList.remove('open');
+      burger.classList.remove('open');
+      mobileMenu.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
     /* ─── FAQ ─── */
     document.querySelectorAll('.faq-question').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -594,14 +706,7 @@
       }, 2500);
     });
 
-    /* ═══════════════════════════════════════════════
-       КАРУСЕЛЬ — физический полёт карточек
-       Сетка 3×2. Позиции (row, col) 0-based:
-         0(0,0)  1(0,1)  2(0,2)
-         3(1,0)  4(1,1)  5(1,2)
-       Периметр по часовой: 0→1→2→5→4→3→0
-    ═══════════════════════════════════════════════ */
-
+    /* ─── ТЕКСТЫ КАРУСЕЛИ ─── */
     const TEXTS = [
       'выделенный инженер без операторов первой линии',
       'фиксированное время ответа',
@@ -611,47 +716,37 @@
       'ответственность за работоспособность интеграции'
     ];
 
-    // порядок позиций по часовой стрелке: верх слева→справа, право вниз, низ справа→слева
-    // позиции в grid: [row, col]
-    const POSITIONS = [
-      [0,0],[0,1],[0,2],
-      [1,2],[1,1],[1,0]
-    ];
-    // периметральный порядок по часовой совпадает с POSITIONS
-    // gridIndex → позиция в POSITIONS
-    // grid: 0=(0,0), 1=(0,1), 2=(0,2), 3=(1,0), 4=(1,1), 5=(1,2)
-    // периметр по часовой: slot 0=(0,0), slot 1=(0,1), slot 2=(0,2), slot 3=(1,2), slot 4=(1,1), slot 5=(1,0)
+    /* ─── МОБИЛЬНАЯ СЕТКА (статичная) ─── */
+    const mobileGrid = document.getElementById('advGridMobile');
+    TEXTS.forEach(text => {
+      const el = document.createElement('div');
+      el.className = 'adv-card-mobile';
+      el.textContent = text;
+      mobileGrid.appendChild(el);
+    });
 
-    const COLS = 3;
-    const ROWS = 2;
-    const GAP  = 16;
+    /* ─── ДЕСКТОП: КАРУСЕЛЬ ─── */
+    const POSITIONS = [[0,0],[0,1],[0,2],[1,2],[1,1],[1,0]];
+    const COLS = 3, ROWS = 2, GAP = 16;
+    const stage   = document.getElementById('advStage');
+    let stageW = 0, cardW = 0, cardH = 0, cards = [];
+    let slotOrder = [0,1,2,3,4,5];
 
-    const stage     = document.getElementById('advStage');
-    let stageW      = 0;
-    let cardW       = 0;
-    let cardH       = 0;
-    let cards       = [];       // DOM-элементы
-    let slotOrder   = [0,1,2,3,4,5]; // slotOrder[i] = текущий slot карточки i
+    function isMobile() { return window.innerWidth <= 900; }
 
-    // slot → {x, y} в пикселях
     function slotToXY(slot) {
-      const pos = POSITIONS[slot];
-      const row = pos[0], col = pos[1];
-      return {
-        x: col * (cardW + GAP),
-        y: row * (cardH + GAP)
-      };
+      const [row, col] = POSITIONS[slot];
+      return { x: col * (cardW + GAP), y: row * (cardH + GAP) };
     }
 
     function initCards() {
+      if (isMobile()) return;
       stageW = stage.offsetWidth;
       cardW  = (stageW - GAP * (COLS - 1)) / COLS;
-      // задаём высоту сцены: измеряем реальную высоту карточки
-      // сначала рисуем невидимо
       stage.innerHTML = '';
       cards = [];
 
-      TEXTS.forEach((text, i) => {
+      TEXTS.forEach(text => {
         const el = document.createElement('div');
         el.className = 'adv-card';
         el.style.width = cardW + 'px';
@@ -661,35 +756,26 @@
         cards.push(el);
       });
 
-      // измеряем высоту после первого layout
       requestAnimationFrame(() => {
         cardH = cards[0].offsetHeight;
         stage.style.height = (ROWS * cardH + (ROWS - 1) * GAP) + 'px';
-
-        // расставляем по начальным позициям без анимации
         cards.forEach((el, i) => {
           const xy = slotToXY(slotOrder[i]);
           el.style.left = '0px';
           el.style.top  = '0px';
           el.style.transform = `translate(${xy.x}px, ${xy.y}px)`;
         });
-
-        // включаем анимацию после первичного позиционирования
         requestAnimationFrame(() => {
           cards.forEach(el => {
             el.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease';
           });
+          buildDashedPath();
         });
-
-        buildDashedPath();
       });
     }
 
     function rotateClockwise() {
-      // по часовой: каждая карточка переходит на следующий slot по периметру
-      // периметр по часовой: slot 0→1→2→3→4→5→0
-      // (slot 3=(1,2), slot 4=(1,1), slot 5=(1,0) — нижняя строка справа налево)
-
+      if (isMobile()) return;
       cards.forEach((el, i) => {
         slotOrder[i] = (slotOrder[i] + 1) % 6;
         const xy = slotToXY(slotOrder[i]);
@@ -703,7 +789,7 @@
     });
 
     window.addEventListener('resize', () => {
-      // пересчитать позиции без анимации
+      if (isMobile()) return;
       cards.forEach(el => el.style.transition = 'none');
       stageW = stage.offsetWidth;
       cardW  = (stageW - GAP * (COLS - 1)) / COLS;
@@ -726,6 +812,7 @@
 
     /* ─── ПУНКТИРНАЯ ЛИНИЯ ─── */
     function buildDashedPath() {
+      if (isMobile()) return;
       const svg      = document.getElementById('dashedSvg');
       const pathEl   = document.getElementById('dashedPath');
       const zone     = document.getElementById('dashedZone');
@@ -734,28 +821,22 @@
       if (!zone || !advTitle || !pricing) return;
 
       const zoneRect    = zone.getBoundingClientRect();
-      const titleRect   = advTitle.getBoundingClientRect();
       const pricingRect = pricing.getBoundingClientRect();
+      const advStageEl  = document.getElementById('advStage');
+      const stageRect   = advStageEl ? advStageEl.getBoundingClientRect() : advTitle.getBoundingClientRect();
 
       const W = zoneRect.width;
       const H = zoneRect.height;
-
       svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
       svg.setAttribute('height', H);
       svg.style.height = H + 'px';
 
       const cx     = W / 2;
-      const advStage  = document.getElementById('advStage');
-      const stageRect = advStage ? advStage.getBoundingClientRect() : titleRect;
-      const startY    = stageRect.bottom - zoneRect.top + 24;
+      const startY = stageRect.bottom - zoneRect.top + 24;
       const endY   = pricingRect.top  - zoneRect.top + 56;
       const midY   = (startY + endY) / 2;
+      const leftX  = 56, rightX = W - 56, r = 56;
 
-      const leftX  = 56;
-      const rightX = W - 56;
-      const r      = 56; // радиус скругления
-
-      // путь: центр → влево (скруглённый угол) → вниз → вправо (скруглённый угол) → вниз → центр
       const d = [
         `M ${cx} ${startY}`,
         `L ${leftX + r} ${startY}`,
