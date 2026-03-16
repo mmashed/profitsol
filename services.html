@@ -76,7 +76,7 @@
 
     /* ─── PAGE HERO ─── */
     .page-hero {
-      padding: 72px 72px 64px;
+      padding: 48px 72px 40px;
       max-width: 1400px;
       margin: 0 auto;
       border-bottom: 1px solid var(--border);
@@ -86,17 +86,17 @@
       display: inline-block;
       font-size: 11px; font-weight: 700;
       letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 20px;
+      color: var(--muted); margin-bottom: 14px;
     }
 
     .page-hero-title {
-      font-size: clamp(36px, 5vw, 64px);
+      font-size: clamp(32px, 4.5vw, 56px);
       font-weight: 800; line-height: 1.05;
       letter-spacing: -0.03em; max-width: 700px;
     }
 
     .page-hero-sub {
-      margin-top: 20px; font-size: 15px;
+      margin-top: 14px; font-size: 15px;
       color: var(--muted); line-height: 1.65; max-width: 520px;
     }
 
@@ -104,7 +104,7 @@
     .services-wrap {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 64px 72px 80px;
+      padding: 40px 72px 0;
     }
 
     .services-grid {
@@ -117,7 +117,7 @@
     }
 
     .service-col {
-      padding: 36px 32px 40px;
+      padding: 28px 24px 32px;
       border-right: 1px solid var(--border);
       position: relative;
       transition: background 0.25s ease;
@@ -138,18 +138,18 @@
     .service-col:hover::before { transform: scaleX(1); }
 
     .service-col-title {
-      font-size: 18px; font-weight: 800;
+      font-size: 17px; font-weight: 800;
       letter-spacing: -0.02em;
-      margin-bottom: 28px; padding-bottom: 20px;
+      margin-bottom: 20px; padding-bottom: 16px;
       border-bottom: 1px solid var(--border);
     }
 
     .service-list { list-style: none; display: flex; flex-direction: column; }
 
     .service-list li {
-      font-size: 13.5px; font-weight: 500;
+      font-size: 13px; font-weight: 500;
       color: #3A3A3A; line-height: 1.5;
-      padding: 12px 0;
+      padding: 10px 0;
       border-bottom: 1px solid var(--border);
       display: flex; align-items: flex-start; gap: 10px;
       transition: color 0.2s;
@@ -161,26 +161,26 @@
       content: ''; display: block;
       width: 4px; height: 4px; border-radius: 50%;
       background: var(--muted); flex-shrink: 0;
-      margin-top: 7px; transition: background 0.2s;
+      margin-top: 6px; transition: background 0.2s;
     }
     .service-col:hover .service-list li::before { background: var(--accent); }
 
     /* ─── CTA ─── */
     .services-cta {
-      margin-top: 56px;
+      margin-top: 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 32px;
-      padding: 40px 48px;
+      padding: 36px 48px;
       background: var(--accent);
       border-radius: var(--radius);
     }
 
-    .services-cta-left { display: flex; flex-direction: column; gap: 8px; }
+    .services-cta-left { display: flex; flex-direction: column; gap: 6px; }
 
     .services-cta-title {
-      font-size: 22px; font-weight: 800;
+      font-size: 20px; font-weight: 800;
       letter-spacing: -0.02em; color: #fff;
     }
 
@@ -203,6 +203,148 @@
       transition: opacity 0.2s;
     }
     .btn-light:hover { opacity: 0.85; }
+
+    /* ─── КЕЙСЫ ─── */
+    .cases-wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 64px 72px 80px;
+    }
+
+    .cases-title {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 40px;
+    }
+
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .case-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      cursor: pointer;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+    }
+
+    .case-card::before {
+      content: '';
+      display: block;
+      width: 100%; height: 2px;
+      background: var(--accent);
+      position: absolute; top: 0; left: 0;
+      border-radius: 2px 2px 0 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .case-card:hover { border-color: #C8C8C2; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+    .case-card:hover::before { transform: scaleX(1); }
+
+    .case-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .case-title {
+      font-size: 16px; font-weight: 800;
+      letter-spacing: -0.02em; line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .case-desc {
+      font-size: 13.5px; color: var(--muted);
+      line-height: 1.6; margin-bottom: 20px;
+      flex: 1;
+    }
+
+    /* accordion */
+    .case-toggle {
+      background: none; border: none;
+      font-family: var(--font); font-size: 13px;
+      font-weight: 600; color: var(--accent);
+      cursor: pointer; padding: 0;
+      display: flex; align-items: center; gap: 6px;
+      transition: opacity 0.2s;
+      margin-bottom: 0;
+    }
+    .case-toggle:hover { opacity: 0.6; }
+
+    .case-toggle-icon {
+      width: 16px; height: 16px;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    .case-card.open .case-toggle-icon { transform: rotate(45deg); }
+
+    .case-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, margin-top 0.3s ease;
+    }
+    .case-card.open .case-details { max-height: 600px; margin-top: 20px; }
+
+    .case-section { margin-bottom: 16px; }
+    .case-section:last-child { margin-bottom: 0; }
+
+    .case-section-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 8px;
+    }
+
+    .case-section ul {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+
+    .case-section ul li {
+      font-size: 13px; color: #3A3A3A;
+      line-height: 1.5;
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+
+    .case-section ul li::before {
+      content: ''; display: block;
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--muted); flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .case-metrics {
+      display: flex; flex-direction: column; gap: 6px;
+      padding: 16px;
+      background: var(--bg);
+      border-radius: 10px;
+      margin-top: 4px;
+    }
+
+    .case-metric {
+      display: flex; align-items: baseline; gap: 8px;
+    }
+
+    .case-metric-val {
+      font-size: 18px; font-weight: 800;
+      letter-spacing: -0.02em; color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .case-metric-desc {
+      font-size: 12px; color: var(--muted); line-height: 1.4;
+    }
 
     /* ─── FOOTER ─── */
     footer {
@@ -283,23 +425,26 @@
       .service-col:nth-child(2) { border-right: none; }
       .service-col:nth-child(1),
       .service-col:nth-child(2) { border-bottom: 1px solid var(--border); }
+      .cases-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 900px) {
       header { padding: 16px 24px; grid-template-columns: 1fr auto; }
       nav { display: none; }
-      .page-hero { padding: 48px 24px 40px; }
-      .services-wrap { padding: 40px 24px 56px; }
+      .page-hero { padding: 36px 24px 28px; }
+      .services-wrap { padding: 32px 24px 0; }
+      .cases-wrap { padding: 40px 24px 56px; }
       footer { grid-template-columns: 1fr; padding: 40px 24px; }
       .footer-right { align-items: flex-start; }
       .footer-copy, .footer-reqs { text-align: left; }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       .services-grid { grid-template-columns: 1fr; }
       .service-col { border-right: none; border-bottom: 1px solid var(--border); }
       .service-col:last-child { border-bottom: none; }
-      .services-cta { flex-direction: column; align-items: flex-start; padding: 32px; }
+      .services-cta { flex-direction: column; align-items: flex-start; padding: 28px; }
+      .cases-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -347,7 +492,7 @@
   <div class="page-hero">
     <span class="page-hero-label">услуги</span>
     <h1 class="page-hero-title">чем можем помочь</h1>
-    <p class="page-hero-sub">поможем во всём процессе: от закупок и логистики до хранения и продаж.</p>
+    <p class="page-hero-sub">во всех процессах: от закупок и логистики до хранения и продаж.</p>
   </div>
 
   <!-- УСЛУГИ -->
@@ -411,6 +556,268 @@
 
   </div>
 
+  <!-- КЕЙСЫ -->
+  <div class="cases-wrap">
+    <h2 class="cases-title">кейсы</h2>
+    <div class="cases-grid">
+
+      <!-- кейс 1 -->
+      <div class="case-card">
+        <span class="case-tag">подписка + SLA</span>
+        <h3 class="case-title">«Собственный отдел 1С» для производителя</h3>
+        <p class="case-desc">заказчик хотел не разовые доработки, а стабильный сервис: предсказуемые сроки, регламенты и минимальный простой операций.</p>
+        <button class="case-toggle" onclick="toggleCase(this)">
+          подробнее
+          <svg class="case-toggle-icon" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="case-details">
+          <div class="case-section">
+            <p class="case-section-label">было</p>
+            <ul>
+              <li>инциденты зависают в чатах, нет единого журнала заявок</li>
+              <li>критичные простои исправляют ручной работой</li>
+              <li>нет отчётности — непонятно, за что платим</li>
+              <li>в 1С накоплен техдолг, любые изменения долго и больно</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <p class="case-section-label">стало</p>
+            <ul>
+              <li>единый портал заявок с приоритизацией по SLA</li>
+              <li>регламенты реакции на критичные инциденты</li>
+              <li>ежемесячные отчёты: задачи, направления, сроки</li>
+              <li>план снижения техдолга без накопления нового</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <p class="case-section-label">результат за 9 месяцев</p>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <span class="case-metric-val">97–99%</span>
+                <span class="case-metric-desc">заявок закрыты в SLA по критичным инцидентам</span>
+              </div>
+              <div class="case-metric">
+                <span class="case-metric-val">−30%</span>
+                <span class="case-metric-desc">среднее время простоя при авариях в 1С</span>
+              </div>
+              <div class="case-metric">
+                <span class="case-metric-val">+2 проекта</span>
+                <span class="case-metric-desc">по развитию автоматизации, не мешая операционке</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- кейс 2 -->
+      <div class="case-card">
+        <span class="case-tag">eCom-операционка</span>
+        <h3 class="case-title">Интеграция 1С ↔ маркетплейсы (WB / Ozon / Я.М.)</h3>
+        <p class="case-desc">автообмен заказов, статусов, остатков и цен — без ручного перекидывания между кабинетами и 1С.</p>
+        <button class="case-toggle" onclick="toggleCase(this)">
+          подробнее
+          <svg class="case-toggle-icon" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="case-details">
+          <div class="case-section">
+            <p class="case-section-label">было</p>
+            <ul>
+              <li>заказы/статусы/остатки ведутся вручную в кабинетах</li>
+              <li>ошибки в остатках — отмены, штрафы, просадки рейтинга</li>
+              <li>документы в 1С догоняют факт отгрузки</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <p class="case-section-label">стало</p>
+            <ul>
+              <li>автообмен: заказы → документы 1С, статусы → в маркетплейс</li>
+              <li>синхронизация остатков и цен, единый поток FBS/FBO</li>
+              <li>от заказа до отгрузки — в одном контуре</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <p class="case-section-label">результат</p>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <span class="case-metric-val">↓ отмены</span>
+                <span class="case-metric-desc">снижение штрафов и рост продаж за счёт стабильной доступности товара</span>
+              </div>
+              <div class="case-metric">
+                <span class="case-metric-val">↓ ФОТ</span>
+                <span class="case-metric-desc">экономия времени операторов за счёт автоматизации обработки</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- кейс 3 -->
+      <div class="case-card">
+        <span class="case-tag">склад / логистика</span>
+        <h3 class="case-title">WMS + ТСД: адресное хранение и сканирование</h3>
+        <p class="case-desc">переход от сборки по бумажкам к управляемым складским процессам с контролем качества.</p>
+        <button class="case-toggle" onclick="toggleCase(this)">
+          подробнее
+          <svg class="case-toggle-icon" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="case-details">
+          <div class="case-section">
+            <p class="case-section-label">было</p>
+            <ul>
+              <li>сборка по бумажкам, поиск товара глазами, пересортица</li>
+              <li>ошибки в отборе — возвраты, недостачи, конфликты</li>
+              <li>инвентаризация редкая и болезненная</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <p class="case-section-label">стало</p>
+            <ul>
+              <li>адресное хранение, задания на отбор, сканирование штрихкодов</li>
+              <li>контроль качества сборки и остатки в реальном времени</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <p class="case-section-label">результат</p>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <span class="case-metric-val">до +40%</span>
+                <span class="case-metric-desc">к скорости комплектования в отдельных кейсах</span>
+              </div>
+              <div class="case-metric">
+                <span class="case-metric-val">↓ ошибки</span>
+                <span class="case-metric-desc">меньше потерь, пересортицы и возвратов</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- кейс 4 -->
+      <div class="case-card">
+        <span class="case-tag">закупки / запасы</span>
+        <h3 class="case-title">Планирование закупок по спросу и оборачиваемости</h3>
+        <p class="case-desc">от «закупаем на ощущениях» к правилам: min/max, ABC/XYZ и учёт сроков поставки.</p>
+        <button class="case-toggle" onclick="toggleCase(this)">
+          подробнее
+          <svg class="case-toggle-icon" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="case-details">
+          <div class="case-section">
+            <p class="case-section-label">было</p>
+            <ul>
+              <li>то затарка, то дефицит — закупки по опыту</li>
+              <li>деньги застревают, растут просрочка и неликвид</li>
+              <li>склад полный, а денег нет</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <p class="case-section-label">стало</p>
+            <ul>
+              <li>прогноз и сезонность + точки заказа min/max + ABC/XYZ</li>
+              <li>рекомендации к закупке с учётом сроков поставки и остатков</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <p class="case-section-label">результат</p>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <span class="case-metric-val">↓ заморозка</span>
+                <span class="case-metric-desc">снижение замороженных денег и неликвида</span>
+              </div>
+              <div class="case-metric">
+                <span class="case-metric-val">↑ оборачиваемость</span>
+                <span class="case-metric-desc">меньше out-of-stock без раздувания склада</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- кейс 5 -->
+      <div class="case-card">
+        <span class="case-tag">комплаенс / риски</span>
+        <h3 class="case-title">Честный знак: полный цикл маркировки + ГИС МТ</h3>
+        <p class="case-desc">маркировка как часть учёта: коды живут в документах 1С и контролируются по статусам.</p>
+        <button class="case-toggle" onclick="toggleCase(this)">
+          подробнее
+          <svg class="case-toggle-icon" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="case-details">
+          <div class="case-section">
+            <p class="case-section-label">было</p>
+            <ul>
+              <li>коды маркировки отдельно от 1С, много ручных операций</li>
+              <li>высокий риск ошибок при печати, агрегации, вводе-выводе</li>
+              <li>продажи могут встать из-за несоответствия статусов</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <p class="case-section-label">стало</p>
+            <ul>
+              <li>интеграция 1С ↔ ГИС МТ: заказ КМ, печать, агрегация, контроль статусов</li>
+              <li>отслеживание кодов в документах и по складу/сериям</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <p class="case-section-label">результат</p>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <span class="case-metric-val">↓ штрафы</span>
+                <span class="case-metric-desc">снижение рисков блокировок и затрат на разбор полётов</span>
+              </div>
+              <div class="case-metric">
+                <span class="case-metric-val">↑ скорость</span>
+                <span class="case-metric-desc">быстрее операции с маркированным товаром, точнее учёт</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- кейс 6 -->
+      <div class="case-card">
+        <span class="case-tag">B2B-снабжение / продажи</span>
+        <h3 class="case-title">EDI с сетями и крупными контрагентами</h3>
+        <p class="case-desc">ORDER/ORDRSP/DESADV и другие сообщения — автоматически по событиям в 1С.</p>
+        <button class="case-toggle" onclick="toggleCase(this)">
+          подробнее
+          <svg class="case-toggle-icon" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="case-details">
+          <div class="case-section">
+            <p class="case-section-label">было</p>
+            <ul>
+              <li>заказы в почту/Excel → ручной ввод в 1С</li>
+              <li>подтверждения и уведомления — как получится, много расхождений</li>
+              <li>споры по поставкам и штрафы за сроки и ошибки</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <p class="case-section-label">стало</p>
+            <ul>
+              <li>ORDER → документы 1С, ORDRSP/DESADV — автоматически</li>
+              <li>единый маршрут документов и статусов с торговыми сетями</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <p class="case-section-label">результат</p>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <span class="case-metric-val">↓ ошибки</span>
+                <span class="case-metric-desc">экономия времени и снижение ошибок ручного ввода</span>
+              </div>
+              <div class="case-metric">
+                <span class="case-metric-val">↓ штрафы</span>
+                <span class="case-metric-desc">быстрее оборот документов и отгрузок</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <div class="footer-left">
@@ -430,6 +837,7 @@
   </footer>
 
   <script>
+    // modal
     const modal       = document.getElementById('modal');
     const modalClose  = document.getElementById('modalClose');
     const formSubmit  = document.getElementById('formSubmit');
@@ -452,6 +860,12 @@
         }, 400);
       }, 2500);
     });
+
+    // кейсы — аккордеон
+    function toggleCase(btn) {
+      const card = btn.closest('.case-card');
+      card.classList.toggle('open');
+    }
   </script>
 
 </body>
