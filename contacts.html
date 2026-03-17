@@ -439,7 +439,18 @@
     const ctaForm    = document.getElementById('ctaFormWrap');
     const ctaSuccess = document.getElementById('ctaSuccess');
 
-    ctaSubmit.addEventListener('click', () => {
+    ctaSubmit.addEventListener('click', async () => {
+      const inputs = document.querySelectorAll('.cta-input');
+      const body = {
+        name:  inputs[0].value,
+        phone: inputs[1].value,
+        email: inputs[2].value
+      };
+      await fetch('https://formspree.io/f/ТВОЙ_ID', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
       ctaForm.style.display = 'none';
       ctaSuccess.style.display = 'block';
     });
