@@ -3,144 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1C для торговли — Profitsol</title>
+  <title>IT-Отдел.1С — Profitsol</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #F7F7F5;
-      --surface: #ffffff;
-      --accent: #0A0A0A;
-      --muted: #7A7A7A;
-      --border: #E4E4E0;
-      --dashed: #C8C8C2;
-      --radius: 16px;
-      --font: 'Manrope', Arial, sans-serif;
-      --gap: 16px;
+      --bg: #F7F7F5; --surface: #ffffff; --accent: #0A0A0A;
+      --muted: #7A7A7A; --border: #E4E4E0; --dashed: #C8C8C2;
+      --radius: 16px; --font: 'Manrope', Arial, sans-serif; --gap: 16px;
     }
+    body { font-family: var(--font); background: var(--bg); color: var(--accent); -webkit-font-smoothing: antialiased; }
 
-    body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--accent);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ─── HEADER ─── */
-    header {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      padding: 20px 72px;
-      border-bottom: 1px solid var(--border);
-      background: var(--bg);
-      position: sticky; top: 0; z-index: 100;
-    }
-
-    .header-logo {
-      width: 180px; height: 60px;
-      background: var(--border); border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      justify-self: start; text-decoration: none;
-    }
+    /* HEADER */
+    header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 20px 72px; border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 0; z-index: 100; }
+    .header-logo { width: 180px; height: 60px; background: var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; justify-self: start; text-decoration: none; }
     .header-logo span { font-size: 11px; color: var(--muted); }
-
     nav { display: flex; align-items: center; gap: 28px; }
-    nav a {
-      font-size: 14px; font-weight: 500; color: #4A4A4A;
-      text-decoration: none; transition: color 0.2s; white-space: nowrap;
-    }
+    nav a { font-size: 14px; font-weight: 500; color: #4A4A4A; text-decoration: none; transition: color 0.2s; white-space: nowrap; }
     nav a:hover, nav a.active { color: var(--accent); }
-
     .header-right { display: flex; align-items: center; gap: 24px; justify-self: end; }
-
-    .header-phone {
-      font-size: 14px; font-weight: 500; color: #4A4A4A;
-      text-decoration: none; white-space: nowrap; transition: color 0.2s;
-    }
+    .header-phone { font-size: 14px; font-weight: 500; color: #4A4A4A; text-decoration: none; white-space: nowrap; transition: color 0.2s; }
     .header-phone:hover { color: var(--accent); }
-
-    .btn-dark {
-      display: inline-flex; align-items: center; justify-content: center;
-      background: var(--accent); color: #fff;
-      border: none; border-radius: 100px;
-      font-family: var(--font); font-weight: 600;
-      cursor: pointer; text-decoration: none; text-align: center;
-      transition: opacity 0.2s; white-space: nowrap; flex-shrink: 0;
-    }
+    .btn-dark { display: inline-flex; align-items: center; justify-content: center; background: var(--accent); color: #fff; border: none; border-radius: 100px; font-family: var(--font); font-weight: 600; cursor: pointer; text-decoration: none; text-align: center; transition: opacity 0.2s; white-space: nowrap; flex-shrink: 0; }
     .btn-dark:hover { opacity: 0.75; }
-    .btn-sm  { padding: 10px 20px; font-size: 13px; line-height: 1.35; }
-    .btn-md  { padding: 14px 24px; font-size: 14px; }
-    .btn-lg  { padding: 16px 48px; font-size: 16px; }
+    .btn-sm { padding: 10px 20px; font-size: 13px; line-height: 1.35; }
+    .btn-md { padding: 14px 24px; font-size: 14px; }
+    .btn-lg { padding: 16px 48px; font-size: 16px; }
 
-    /* бургер */
-    .burger {
-      display: none;
-      flex-direction: column; gap: 5px;
-      background: none; border: none;
-      cursor: pointer; padding: 4px;
-      justify-self: end;
-    }
-    .burger span {
-      display: block; width: 22px; height: 2px;
-      background: var(--accent); border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
-    }
+    /* БУРГЕР */
+    .burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; justify-self: end; }
+    .burger span { display: block; width: 22px; height: 2px; background: var(--accent); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
     .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .burger.open span:nth-child(2) { opacity: 0; }
     .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    /* мобильное меню */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--bg);
-      z-index: 99;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s;
-    }
-    .mobile-menu.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-    .mobile-menu a {
-      font-size: 28px; font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--accent); text-decoration: none;
-      transition: opacity 0.2s;
-    }
+    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu a { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
     .mobile-menu a:hover { opacity: 0.5; }
-    .mobile-menu .mobile-phone {
-      font-size: 16px; font-weight: 500;
-      color: var(--muted); margin-top: 8px;
-    }
+    .mobile-menu .mobile-phone { font-size: 16px; font-weight: 500; color: var(--muted); margin-top: 8px; }
 
-    /* ─── HERO ─── */
-    .hero {
-      display: grid; grid-template-columns: 2fr 1fr;
-      padding: 64px 72px; gap: 48px;
-      max-width: 1400px; margin: 0 auto; align-items: start;
-    }
+    /* HERO */
+    .hero { display: grid; grid-template-columns: 2fr 1fr; padding: 64px 72px; gap: 48px; max-width: 1400px; margin: 0 auto; align-items: start; }
     .hero-left { display: flex; flex-direction: column; }
-    .hero-utp {
-      font-size: clamp(32px, 4vw, 56px);
-      font-weight: 800; line-height: 1.1;
-      letter-spacing: -0.03em; max-width: 680px;
-    }
+    .hero-utp { font-size: clamp(32px, 4vw, 56px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; max-width: 680px; }
     .hero-bottom { display: flex; flex-direction: column; gap: 16px; margin-top: 64px; }
     .hero-tagline { font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 420px; }
     .hero-right { display: flex; flex-direction: column; align-items: center; }
-
-    /* орбита */
     .orbit-wrapper { position: relative; width: 320px; height: 320px; flex-shrink: 0; }
     .orbit-ring { position: absolute; inset: 0; border-radius: 50%; border: 1px dashed var(--dashed); }
     .orbit-item { position: absolute; top: 50%; left: 50%; width: 0; height: 0; }
@@ -151,196 +61,88 @@
     .orbit-item:nth-child(6) { animation: spin 20s linear infinite; animation-delay: calc(-4 * 20s / 7); }
     .orbit-item:nth-child(7) { animation: spin 20s linear infinite; animation-delay: calc(-5 * 20s / 7); }
     .orbit-item:nth-child(8) { animation: spin 20s linear infinite; animation-delay: calc(-6 * 20s / 7); }
-
-    @keyframes spin {
-      from { transform: rotate(0deg)   translateX(var(--orbit-r, 160px)) rotate(0deg); }
-      to   { transform: rotate(360deg) translateX(var(--orbit-r, 160px)) rotate(-360deg); }
-    }
-
-    .orbit-label {
-      position: absolute; top: 0; left: 0;
-      transform: translate(-50%, -50%);
-      white-space: nowrap; background: #fff;
-      border: 1px solid var(--border); border-radius: 100px;
-      padding: 6px 12px; font-size: 12px; font-weight: 500;
-      color: var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      pointer-events: none;
-    }
-
+    @keyframes spin { from { transform: rotate(0deg) translateX(160px) rotate(0deg); } to { transform: rotate(360deg) translateX(160px) rotate(-360deg); } }
+    .orbit-label { position: absolute; top: 0; left: 0; transform: translate(-50%, -50%); white-space: nowrap; background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.06); pointer-events: none; }
     .hero-price { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; margin-top: 64px; }
-
     .section-divider { border: none; border-top: 1px solid var(--border); margin: 0 72px; }
 
-    /* ─── SECTION ─── */
+    /* SECTION */
     .section { padding: 80px 72px; max-width: 1400px; margin: 0 auto; position: relative; }
-    .section-title {
-      font-size: clamp(24px, 3vw, 36px);
-      font-weight: 800; letter-spacing: -0.02em;
-      text-align: center; margin-bottom: 48px;
-      position: relative; z-index: 2;
-    }
+    .section-title { font-size: clamp(24px, 3vw, 36px); font-weight: 800; letter-spacing: -0.02em; text-align: center; margin-bottom: 48px; position: relative; z-index: 2; }
 
-    /* ─── SCREEN 2 ─── */
-    .advantages-section {
-      padding: 80px 72px;
-      position: relative; overflow: visible;
-    }
-
-    .dashed-line {
-      fill: none; stroke: var(--dashed);
-      stroke-width: 1.5; stroke-dasharray: 6 5;
-      stroke-linecap: round;
-      animation: dashFlow 1.5s linear infinite;
-    }
+    /* ПРЕИМУЩЕСТВА */
+    .advantages-section { padding: 80px 72px; position: relative; overflow: visible; }
+    .dashed-line { fill: none; stroke: var(--dashed); stroke-width: 1.5; stroke-dasharray: 6 5; stroke-linecap: round; animation: dashFlow 1.5s linear infinite; }
     @keyframes dashFlow { to { stroke-dashoffset: -22; } }
+    .advantages-stage { position: relative; max-width: 1400px; margin: 0 auto; z-index: 1; }
+    .adv-card { position: absolute; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px 24px; font-size: 15px; font-weight: 500; line-height: 1.45; transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease; will-change: transform; }
+    .adv-card::before { content: ''; display: block; width: 100%; height: 1.5px; background: var(--accent); border-radius: 2px; margin-bottom: 20px; }
+    .adv-card-mobile { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 18px; font-size: 14px; font-weight: 500; line-height: 1.45; }
+    .adv-card-mobile::before { content: ''; display: block; width: 100%; height: 1.5px; background: var(--accent); border-radius: 2px; margin-bottom: 14px; }
+    .section-footnote { text-align: center; font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 680px; margin: 40px auto 0; position: relative; z-index: 1; }
+    .adv-grid-mobile { display: none; }
 
-    .advantages-stage {
-      position: relative;
-      max-width: 1400px; margin: 0 auto; z-index: 1;
-    }
-
-    .adv-card {
-      position: absolute;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 28px 24px 24px;
-      font-size: 15px; font-weight: 500; line-height: 1.45;
-      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
-      will-change: transform;
-    }
-    .adv-card::before {
-      content: ''; display: block;
-      width: 100%; height: 1.5px;
-      background: var(--accent); border-radius: 2px; margin-bottom: 20px;
-    }
-
-    /* мобильная карусель — обычный поток */
-    .adv-card-mobile {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 20px 18px;
-      font-size: 14px; font-weight: 500; line-height: 1.45;
-    }
-    .adv-card-mobile::before {
-      content: ''; display: block;
-      width: 100%; height: 1.5px;
-      background: var(--accent); border-radius: 2px; margin-bottom: 14px;
-    }
-
-    .section-footnote {
-      text-align: center; font-size: 15px;
-      color: var(--muted); line-height: 1.6;
-      max-width: 680px; margin: 40px auto 0;
-      position: relative; z-index: 1;
-    }
-
-    /* ─── PRICING ─── */
-    .pricing-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 16px; margin-bottom: 48px;
-    }
-    .pricing-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 36px 32px;
-      display: flex; flex-direction: column; gap: 24px;
-    }
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
+    .pricing-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px 32px; display: flex; flex-direction: column; gap: 24px; }
     .pricing-card.featured { border-color: var(--accent); }
     .pricing-header { display: flex; flex-direction: column; gap: 8px; }
-    .pricing-name {
-      font-size: 12px; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
-    }
+    .pricing-name { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
     .pricing-price { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; }
     .pricing-period { font-size: 14px; color: var(--muted); }
     .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-    .pricing-features li {
-      font-size: 14px; color: #3A3A3A;
-      display: flex; align-items: center; gap: 10px; line-height: 1.4;
-    }
-    .pricing-features li::before {
-      content: ''; display: block;
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--accent); flex-shrink: 0;
-    }
-    .pricing-why {
-      text-align: center; font-size: 15px; color: var(--muted);
-      line-height: 1.6; max-width: 680px; margin: 0 auto 32px;
-    }
+    .pricing-features li { font-size: 14px; color: #3A3A3A; display: flex; align-items: center; gap: 10px; line-height: 1.4; }
+    .pricing-features li::before { content: ''; display: block; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .pricing-why { text-align: center; font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 680px; margin: 0 auto 32px; }
     .pricing-cta-wrap { display: flex; justify-content: center; }
 
-    /* ─── FAQ ─── */
+    /* FAQ */
     .faq-wrap { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
     .faq-item { border-bottom: 1px solid var(--border); }
-    .faq-question {
-      width: 100%; background: none; border: none; text-align: left;
-      padding: 20px 0; font-family: var(--font);
-      font-size: 15px; font-weight: 600; color: var(--accent);
-      cursor: pointer; display: flex; justify-content: space-between;
-      align-items: center; gap: 16px;
-    }
+    .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 20px 0; font-family: var(--font); font-size: 15px; font-weight: 600; color: var(--accent); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
     .faq-icon { width: 20px; height: 20px; flex-shrink: 0; transition: transform 0.3s; }
     .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-answer {
-      font-size: 14px; color: var(--muted); line-height: 1.7;
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.35s ease;
-    }
+    .faq-answer { font-size: 14px; color: var(--muted); line-height: 1.7; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
     .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 20px; }
 
-    /* ─── MODAL ─── */
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(4px); z-index: 200;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none; transition: opacity 0.25s;
-    }
+    /* MODAL */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
     .modal-overlay.active { opacity: 1; pointer-events: all; }
-    .modal {
-      background: #fff; border-radius: 24px; padding: 48px;
-      width: 100%; max-width: 480px; position: relative;
-      transform: translateY(16px); transition: transform 0.25s;
-      margin: 16px;
-    }
+    .modal { background: #fff; border-radius: 24px; padding: 48px; width: 100%; max-width: 480px; position: relative; transform: translateY(16px); transition: transform 0.25s; margin: 16px; }
     .modal-overlay.active .modal { transform: translateY(0); }
-    .modal-close {
-      position: absolute; top: 20px; right: 20px;
-      background: none; border: none; cursor: pointer;
-      color: var(--muted); font-size: 22px; line-height: 1; transition: color 0.2s;
-    }
+    .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; cursor: pointer; color: var(--muted); font-size: 22px; line-height: 1; transition: color 0.2s; }
     .modal-close:hover { color: var(--accent); }
     .modal-title { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
     .modal-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; line-height: 1.5; }
-    .form-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
-    .form-input {
-      width: 100%; padding: 14px 18px;
-      border: 1px solid var(--border); border-radius: 12px;
-      font-family: var(--font); font-size: 15px; color: var(--accent);
-      background: var(--bg); outline: none; transition: border-color 0.2s;
-    }
+    .form-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+    .form-input { width: 100%; padding: 14px 18px; border: 1px solid var(--border); border-radius: 12px; font-family: var(--font); font-size: 15px; color: var(--accent); background: var(--bg); outline: none; transition: border-color 0.2s; }
     .form-input:focus { border-color: var(--accent); }
     .form-input::placeholder { color: #B0B0A8; }
     .form-hint { font-size: 12px; color: #B0B0A8; text-align: center; margin-bottom: 16px; }
-    .form-submit {
-      width: 100%; padding: 16px; background: var(--accent); color: #fff;
-      border: none; border-radius: 100px; font-family: var(--font);
-      font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity 0.2s;
-    }
+    .form-submit { width: 100%; padding: 16px; background: var(--accent); color: #fff; border: none; border-radius: 100px; font-family: var(--font); font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; margin-top: 4px; }
     .form-submit:hover { opacity: 0.75; }
     .form-success { display: none; text-align: center; padding: 24px 0; }
     .form-success-icon { font-size: 40px; margin-bottom: 12px; }
     .form-success-title { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
     .form-success-text { font-size: 14px; color: var(--muted); line-height: 1.5; }
 
-    /* ─── FOOTER ─── */
-    footer {
-      border-top: 1px solid var(--border); padding: 48px 72px;
-      display: grid; grid-template-columns: 1fr 1fr 1fr;
-      gap: 32px; align-items: start;
-    }
+    /* СОГЛАСИЕ */
+    .consent-label { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; color: var(--muted); line-height: 1.5; cursor: pointer; margin-bottom: 12px; }
+    .consent-label input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 14px; height: 14px; accent-color: var(--accent); cursor: pointer; }
+    .consent-label a { color: var(--muted); text-decoration: underline; }
+    .consent-label.error { color: #d94f4f; }
+    .consent-label.error a { color: #d94f4f; }
+
+    /* КУКИ */
+    .cookie-banner { display: none; position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 300; background: var(--accent); color: #fff; border-radius: 100px; padding: 14px 20px 14px 28px; align-items: center; gap: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); font-size: 13px; font-weight: 500; white-space: nowrap; transition: opacity 0.3s; max-width: calc(100vw - 48px); }
+    .cookie-banner-text { color: rgba(255,255,255,0.75); }
+    .cookie-banner-btn { background: #fff; color: var(--accent); border: none; border-radius: 100px; padding: 8px 20px; font-family: var(--font); font-size: 13px; font-weight: 700; cursor: pointer; flex-shrink: 0; transition: opacity 0.2s; }
+    .cookie-banner-btn:hover { opacity: 0.8; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 48px 72px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; align-items: start; }
     .footer-left { display: flex; flex-direction: column; gap: 16px; }
-    .footer-logo {
-      width: 140px; height: 48px; background: var(--border);
-      border-radius: 8px; display: flex; align-items: center; justify-content: center;
-      text-decoration: none;
-    }
+    .footer-logo { width: 140px; height: 48px; background: var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; }
     .footer-logo span { font-size: 11px; color: var(--muted); }
     .footer-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
     .footer-nav { display: flex; flex-direction: column; gap: 12px; align-items: center; }
@@ -350,73 +152,49 @@
     .footer-copy { font-size: 12px; color: var(--muted); text-align: right; line-height: 1.5; }
     .footer-reqs { font-size: 11px; color: #B0B0A8; text-align: right; line-height: 1.6; }
 
-    /* ─── RESPONSIVE ─── */
+    /* RESPONSIVE */
     @media (max-width: 900px) {
-      /* header */
-      header {
-        padding: 16px 24px;
-        grid-template-columns: 1fr auto;
-      }
+      header { padding: 16px 24px; grid-template-columns: 1fr auto; }
       header nav, header .header-right { display: none; }
       .burger { display: flex; }
-
-      /* hero */
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 32px 24px 40px;
-        gap: 40px;
-      }
+      .hero { grid-template-columns: 1fr; padding: 32px 24px 40px; gap: 40px; }
       .hero-bottom { margin-top: 32px; }
       .hero-right { align-items: center; width: 100%; }
-      .orbit-wrapper { margin: 0 auto; }
-
-      .orbit-wrapper { width: 200px; height: 200px; }
-      .orbit-item { --orbit-r: 96px; }
-      .orbit-item:nth-child(2) { animation-name: spinMobile; }
-      .orbit-item:nth-child(3) { animation-name: spinMobile; }
-      .orbit-item:nth-child(4) { animation-name: spinMobile; }
-      .orbit-item:nth-child(5) { animation-name: spinMobile; }
-      .orbit-item:nth-child(6) { animation-name: spinMobile; }
-      .orbit-item:nth-child(7) { animation-name: spinMobile; }
-      .orbit-item:nth-child(8) { animation-name: spinMobile; }
-
-      @keyframes spinMobile {
-        from { transform: rotate(0deg)   translateX(96px) rotate(0deg); }
-        to   { transform: rotate(360deg) translateX(96px) rotate(-360deg); }
-      }
-
+      .orbit-wrapper { width: 200px; height: 200px; margin: 0 auto; }
+      .orbit-item:nth-child(2) { animation-name: spinM; }
+      .orbit-item:nth-child(3) { animation-name: spinM; }
+      .orbit-item:nth-child(4) { animation-name: spinM; }
+      .orbit-item:nth-child(5) { animation-name: spinM; }
+      .orbit-item:nth-child(6) { animation-name: spinM; }
+      .orbit-item:nth-child(7) { animation-name: spinM; }
+      .orbit-item:nth-child(8) { animation-name: spinM; }
+      @keyframes spinM { from { transform: rotate(0deg) translateX(96px) rotate(0deg); } to { transform: rotate(360deg) translateX(96px) rotate(-360deg); } }
       .orbit-label { font-size: 10px; padding: 5px 10px; }
       .hero-price { margin-top: 24px; font-size: 24px; }
-
-      /* преимущества — прячем stage, показываем мобильную сетку */
       .advantages-section { padding: 40px 24px; }
       #advStage { display: none; }
-      .adv-grid-mobile {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-      }
+      .adv-grid-mobile { display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; }
       #dashedSvg { display: none; }
       .section-footnote { margin-top: 24px; font-size: 14px; }
-
-      /* тарифы */
       .pricing-grid { grid-template-columns: 1fr; }
       .section { padding: 40px 24px; }
       .section-divider { margin: 0 24px; }
-
-      /* footer */
       footer { grid-template-columns: 1fr; padding: 40px 24px; }
       .footer-right { align-items: flex-start; }
       .footer-copy, .footer-reqs { text-align: left; }
+      .cookie-banner { white-space: normal; border-radius: 20px; bottom: 16px; flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px 24px; }
     }
-
-    /* мобильная сетка скрыта на десктопе */
-    .adv-grid-mobile { display: none; }
   </style>
 </head>
 <body>
 
-  <!-- мобильное меню -->
+  <!-- КУКИ БАННЕР -->
+  <div class="cookie-banner" id="cookieBanner">
+    <span class="cookie-banner-text">мы используем cookies для работы сайта.</span>
+    <button class="cookie-banner-btn" id="cookieOk">Хорошо</button>
+  </div>
+
+  <!-- МОБИЛЬНОЕ МЕНЮ -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="/" onclick="closeMobile()">главная</a>
     <a href="/services" onclick="closeMobile()">услуги</a>
@@ -434,9 +212,13 @@
         <p class="modal-sub">оставьте контакты — свяжемся в рабочее время, обычно в течение 15 минут.</p>
         <div class="form-group">
           <input class="form-input" type="text" placeholder="имя" />
-          <input class="form-input" type="tel" placeholder="телефон" />
+          <input class="form-input" type="tel" id="modalPhone" placeholder="+7 (___) ___-__-__" />
           <input class="form-input" type="email" placeholder="e-mail" />
         </div>
+        <label class="consent-label" id="modalConsentLabel">
+          <input type="checkbox" id="modalConsent" />
+          <span>я даю согласие на <a href="/privacy">обработку персональных данных</a></span>
+        </label>
         <p class="form-hint">все поля необязательны</p>
         <button class="form-submit" id="formSubmit">отправить заявку</button>
       </div>
@@ -466,7 +248,7 @@
     </button>
   </header>
 
-  <!-- ЭКРАН 1: HERO -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
       <h1 class="hero-utp">Интеграция, настройка и сопровождение 1С для оптовой торговли и дистрибуции.</h1>
@@ -479,10 +261,10 @@
       <div class="orbit-wrapper">
         <div class="orbit-ring"></div>
         <div class="orbit-item"><span class="orbit-label">1С: УТ</span></div>
-        <div class="orbit-item"><span class="orbit-label">1С: Документооборот</span></div>
         <div class="orbit-item"><span class="orbit-label">1С: КА</span></div>
-        <div class="orbit-item"><span class="orbit-label">1С: Розница</span></div>
         <div class="orbit-item"><span class="orbit-label">1С: УНФ</span></div>
+        <div class="orbit-item"><span class="orbit-label">1С: Розница</span></div>
+        <div class="orbit-item"><span class="orbit-label">1С: Документооборот</span></div>
         <div class="orbit-item"><span class="orbit-label">1С: Бухгалтерия</span></div>
         <div class="orbit-item"><span class="orbit-label">1С: ЗУП</span></div>
       </div>
@@ -492,28 +274,22 @@
 
   <hr class="section-divider" />
 
-  <!-- обёртка для пунктира -->
   <div style="position:relative;" id="dashedZone">
-
     <svg id="dashedSvg" style="position:absolute;top:0;left:0;width:100%;pointer-events:none;z-index:0;overflow:visible;" preserveAspectRatio="none">
       <path id="dashedPath" class="dashed-line" d="" />
     </svg>
 
-    <!-- ЭКРАН 2 -->
     <section class="advantages-section" id="advantages">
       <div style="max-width:1400px;margin:0 auto;position:relative;z-index:1;">
         <h2 class="section-title" id="advTitle">При сотрудничестве с нами</h2>
-        <!-- десктоп: карусель -->
         <div class="advantages-stage" id="advStage"></div>
-        <!-- мобильный: статичная сетка -->
         <div class="adv-grid-mobile" id="advGridMobile"></div>
-        <p class="section-footnote" id="advFootnote">мы подойдём друг другу, если вы в оптовой торговле или дистрибуции и нуждаетесь в 1C без переплаты «брендовым» интеграторам.</p>
+        <p class="section-footnote">мы подойдём друг другу, если вы в оптовой торговле или дистрибуции и нуждаетесь в 1C без переплаты «брендовым» интеграторам.</p>
       </div>
     </section>
 
     <hr class="section-divider" />
 
-    <!-- ЭКРАН 3: ТАРИФЫ -->
     <section class="section" id="pricing" style="position:relative;z-index:1;">
       <h2 class="section-title">Стоимость и тарифы</h2>
       <div class="pricing-grid">
@@ -560,84 +336,31 @@
           </ul>
         </div>
       </div>
-      <p class="pricing-why">за вами, в отличие от наших конкурентов, закрепляется конкретный специалист, которого вы знаете по имени. он знает историю задач и специфику вашего бизнеса, всегда на связи с вами в рабочие часы.</p>
+      <p class="pricing-why">за вами закрепляется конкретный специалист, которого вы знаете по имени. он знает историю задач и специфику вашего бизнеса, всегда на связи в рабочие часы.</p>
       <div class="pricing-cta-wrap">
         <a href="#" class="btn-dark btn-lg open-modal">Обсудим сотрудничество?</a>
       </div>
     </section>
-
   </div>
 
   <hr class="section-divider" />
 
-  <!-- ЭКРАН 4: FAQ -->
   <section class="section" id="faq">
     <h2 class="section-title">FAQ</h2>
     <div class="faq-wrap">
-      <div class="faq-item">
-        <button class="faq-question">в какие часы вы на связи?
-          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">стандартно 9:00–18:00 мск, плюс-минус 2 часа по договорённости. расширение графика фиксируется.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">как ставить задачи и где смотреть статус?
-          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">оперативно — telegram и почта. статус и история ведутся в тикет-системе.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">что означает «время реакции»? вы гарантируете «время решения»?
-          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">время реакции — когда подтвердили обращение и начали разбор. время решения зависит от причины, доступов и внешних факторов. фиксируется только время реакции.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">как расставляете приоритеты — инциденты vs развитие?
-          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">критичные инциденты всегда первыми. развитие планируется в отдельном бэклоге.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">какие задачи входят в тарифные часы, а что идёт отдельным проектом?
-          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">в сопровождение входят консультации, диагностика, регламентные работы, небольшие доработки. крупные внедрения — отдельный проект.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">что будет, если пакет часов закончился?
-          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">докупить часы, перенести задачи на следующий период или перейти на тариф выше. критичные инциденты в приоритете в любом случае.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">нужен ли 1с:кп/итс, если вы делаете обновления?
-          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">обычно нужен для легального доступа к обновлениям. если договор уже есть — работают на вашей стороне, если нет — помогут оформить.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">бэкапы и регламентные работы — вы реально делаете и проверяете?
-          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">да: делаются, проверяются, контролируется корректность.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">есть ли дежурство в выходные и праздники?
-          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">да, дежурство есть. в праздники — по предварительной договорённости с фиксацией.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question">можно ли приостановить сопровождение или расторгнуть договор?
-          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">пауза не предусмотрена. расторжение — уведомление за 1 месяц. открытые задачи закрываются, статусы передаются.</div>
-      </div>
+      <div class="faq-item"><button class="faq-question">в какие часы вы на связи?<svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="faq-answer">стандартно 9:00–18:00 мск, плюс-минус 2 часа по договорённости. расширение графика фиксируется.</div></div>
+      <div class="faq-item"><button class="faq-question">как ставить задачи и где смотреть статус?<svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="faq-answer">оперативно — telegram и почта. статус и история ведутся в тикет-системе.</div></div>
+      <div class="faq-item"><button class="faq-question">что означает «время реакции»? вы гарантируете «время решения»?<svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="faq-answer">время реакции — когда подтвердили обращение и начали разбор. время решения зависит от причины, доступов и внешних факторов. фиксируется только время реакции.</div></div>
+      <div class="faq-item"><button class="faq-question">как расставляете приоритеты — инциденты vs развитие?<svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="faq-answer">критичные инциденты всегда первыми. развитие планируется в отдельном бэклоге.</div></div>
+      <div class="faq-item"><button class="faq-question">какие задачи входят в тарифные часы, а что идёт отдельным проектом?<svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="faq-answer">в сопровождение входят консультации, диагностика, регламентные работы, небольшие доработки. крупные внедрения — отдельный проект.</div></div>
+      <div class="faq-item"><button class="faq-question">что будет, если пакет часов закончился?<svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="faq-answer">докупить часы, перенести задачи на следующий период или перейти на тариф выше. критичные инциденты в приоритете в любом случае.</div></div>
+      <div class="faq-item"><button class="faq-question">нужен ли 1с:кп/итс, если вы делаете обновления?<svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="faq-answer">обычно нужен для легального доступа к обновлениям. если договор уже есть — работают на вашей стороне, если нет — помогут оформить.</div></div>
+      <div class="faq-item"><button class="faq-question">бэкапы и регламентные работы — вы реально делаете и проверяете?<svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="faq-answer">да: делаются, проверяются, контролируется корректность.</div></div>
+      <div class="faq-item"><button class="faq-question">есть ли дежурство в выходные и праздники?<svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="faq-answer">да, дежурство есть. в праздники — по предварительной договорённости с фиксацией.</div></div>
+      <div class="faq-item"><button class="faq-question">можно ли приостановить сопровождение или расторгнуть договор?<svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="faq-answer">пауза не предусмотрена. расторжение — уведомление за 1 месяц. открытые задачи закрываются, статусы передаются.</div></div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-left">
       <a href="/" class="footer-logo"><span>логотип</span></a>
@@ -648,6 +371,7 @@
       <a href="/services">услуги</a>
       <a href="/#pricing">тарифы</a>
       <a href="/contacts">контакты</a>
+      <a href="/privacy">политика конфиденциальности</a>
     </nav>
     <div class="footer-right">
       <p class="footer-copy">© 2026 ИП Пак Дмитрий Анатольевич.<br/>Все права защищены.</p>
@@ -656,17 +380,15 @@
   </footer>
 
   <script>
-    /* ─── БУРГЕР ─── */
-    const burger     = document.getElementById('burger');
+    /* БУРГЕР */
+    const burger = document.getElementById('burger');
     const mobileMenu = document.getElementById('mobileMenu');
-
     burger.addEventListener('click', () => {
       const open = mobileMenu.classList.toggle('open');
       burger.classList.toggle('open', open);
       mobileMenu.style.display = open ? 'flex' : 'none';
       document.body.style.overflow = open ? 'hidden' : '';
     });
-
     function closeMobile() {
       mobileMenu.classList.remove('open');
       burger.classList.remove('open');
@@ -674,7 +396,7 @@
       document.body.style.overflow = '';
     }
 
-    /* ─── FAQ ─── */
+    /* FAQ */
     document.querySelectorAll('.faq-question').forEach(btn => {
       btn.addEventListener('click', () => {
         const item = btn.closest('.faq-item');
@@ -685,28 +407,36 @@
       });
     });
 
-    /* ─── MODAL ─── */
-    const modal       = document.getElementById('modal');
-    const modalClose  = document.getElementById('modalClose');
-    const formSubmit  = document.getElementById('formSubmit');
-    const formWrap    = document.getElementById('formWrap');
-    const formSuccess = document.getElementById('formSuccess');
+    /* MODAL */
+    const modal      = document.getElementById('modal');
+    const modalClose = document.getElementById('modalClose');
+    const formSubmit = document.getElementById('formSubmit');
+    const formWrap   = document.getElementById('formWrap');
+    const formSuccess= document.getElementById('formSuccess');
 
     document.querySelectorAll('.open-modal').forEach(el =>
       el.addEventListener('click', e => { e.preventDefault(); modal.classList.add('active'); })
     );
     modalClose.addEventListener('click', () => modal.classList.remove('active'));
     modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('active'); });
+
     formSubmit.addEventListener('click', () => {
+      const consent = document.getElementById('modalConsent');
+      const label   = document.getElementById('modalConsentLabel');
+      if (!consent.checked) {
+        label.classList.add('error');
+        consent.addEventListener('change', () => label.classList.remove('error'), { once: true });
+        return;
+      }
       formWrap.style.display = 'none';
       formSuccess.style.display = 'block';
       setTimeout(() => {
         modal.classList.remove('active');
-        setTimeout(() => { formWrap.style.display = 'block'; formSuccess.style.display = 'none'; }, 400);
+        setTimeout(() => { formWrap.style.display = 'block'; formSuccess.style.display = 'none'; consent.checked = false; }, 400);
       }, 2500);
     });
 
-    /* ─── ТЕКСТЫ КАРУСЕЛИ ─── */
+    /* КАРУСЕЛЬ */
     const TEXTS = [
       'выделенный инженер без операторов первой линии',
       'фиксированное время ответа',
@@ -715,8 +445,6 @@
       'резервные копии и бэкапы',
       'ответственность за работоспособность интеграции'
     ];
-
-    /* ─── МОБИЛЬНАЯ СЕТКА (статичная) ─── */
     const mobileGrid = document.getElementById('advGridMobile');
     TEXTS.forEach(text => {
       const el = document.createElement('div');
@@ -725,27 +453,23 @@
       mobileGrid.appendChild(el);
     });
 
-    /* ─── ДЕСКТОП: КАРУСЕЛЬ ─── */
     const POSITIONS = [[0,0],[0,1],[0,2],[1,2],[1,1],[1,0]];
     const COLS = 3, ROWS = 2, GAP = 16;
-    const stage   = document.getElementById('advStage');
+    const stage = document.getElementById('advStage');
     let stageW = 0, cardW = 0, cardH = 0, cards = [];
     let slotOrder = [0,1,2,3,4,5];
 
     function isMobile() { return window.innerWidth <= 900; }
-
     function slotToXY(slot) {
       const [row, col] = POSITIONS[slot];
       return { x: col * (cardW + GAP), y: row * (cardH + GAP) };
     }
-
     function initCards() {
       if (isMobile()) return;
       stageW = stage.offsetWidth;
       cardW  = (stageW - GAP * (COLS - 1)) / COLS;
       stage.innerHTML = '';
       cards = [];
-
       TEXTS.forEach(text => {
         const el = document.createElement('div');
         el.className = 'adv-card';
@@ -755,25 +479,20 @@
         stage.appendChild(el);
         cards.push(el);
       });
-
       requestAnimationFrame(() => {
         cardH = cards[0].offsetHeight;
         stage.style.height = (ROWS * cardH + (ROWS - 1) * GAP) + 'px';
         cards.forEach((el, i) => {
           const xy = slotToXY(slotOrder[i]);
-          el.style.left = '0px';
-          el.style.top  = '0px';
+          el.style.left = '0px'; el.style.top = '0px';
           el.style.transform = `translate(${xy.x}px, ${xy.y}px)`;
         });
         requestAnimationFrame(() => {
-          cards.forEach(el => {
-            el.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease';
-          });
+          cards.forEach(el => { el.style.transition = 'transform 0.7s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease'; });
           buildDashedPath();
         });
       });
     }
-
     function rotateClockwise() {
       if (isMobile()) return;
       cards.forEach((el, i) => {
@@ -782,12 +501,7 @@
         el.style.transform = `translate(${xy.x}px, ${xy.y}px)`;
       });
     }
-
-    window.addEventListener('load', () => {
-      initCards();
-      setInterval(rotateClockwise, 3000);
-    });
-
+    window.addEventListener('load', () => { initCards(); setInterval(rotateClockwise, 3000); });
     window.addEventListener('resize', () => {
       if (isMobile()) return;
       cards.forEach(el => el.style.transition = 'none');
@@ -797,46 +511,34 @@
       requestAnimationFrame(() => {
         cardH = cards[0] ? cards[0].offsetHeight : cardH;
         stage.style.height = (ROWS * cardH + (ROWS - 1) * GAP) + 'px';
-        cards.forEach((el, i) => {
-          const xy = slotToXY(slotOrder[i]);
-          el.style.transform = `translate(${xy.x}px, ${xy.y}px)`;
-        });
+        cards.forEach((el, i) => { const xy = slotToXY(slotOrder[i]); el.style.transform = `translate(${xy.x}px, ${xy.y}px)`; });
         requestAnimationFrame(() => {
-          cards.forEach(el => {
-            el.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease';
-          });
+          cards.forEach(el => { el.style.transition = 'transform 0.7s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease'; });
           buildDashedPath();
         });
       });
     });
 
-    /* ─── ПУНКТИРНАЯ ЛИНИЯ ─── */
+    /* ПУНКТИР */
     function buildDashedPath() {
       if (isMobile()) return;
-      const svg      = document.getElementById('dashedSvg');
-      const pathEl   = document.getElementById('dashedPath');
-      const zone     = document.getElementById('dashedZone');
-      const advTitle = document.getElementById('advTitle');
-      const pricing  = document.getElementById('pricing');
-      if (!zone || !advTitle || !pricing) return;
-
+      const svg = document.getElementById('dashedSvg');
+      const pathEl = document.getElementById('dashedPath');
+      const zone = document.getElementById('dashedZone');
+      const pricing = document.getElementById('pricing');
+      const advStageEl = document.getElementById('advStage');
+      if (!zone || !pricing) return;
       const zoneRect    = zone.getBoundingClientRect();
       const pricingRect = pricing.getBoundingClientRect();
-      const advStageEl  = document.getElementById('advStage');
-      const stageRect   = advStageEl ? advStageEl.getBoundingClientRect() : advTitle.getBoundingClientRect();
-
-      const W = zoneRect.width;
-      const H = zoneRect.height;
+      const stageRect   = advStageEl ? advStageEl.getBoundingClientRect() : zone.getBoundingClientRect();
+      const W = zoneRect.width, H = zoneRect.height;
       svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-      svg.setAttribute('height', H);
-      svg.style.height = H + 'px';
-
-      const cx     = W / 2;
+      svg.setAttribute('height', H); svg.style.height = H + 'px';
+      const cx = W / 2;
       const startY = stageRect.bottom - zoneRect.top + 24;
       const endY   = pricingRect.top  - zoneRect.top + 56;
       const midY   = (startY + endY) / 2;
-      const leftX  = 56, rightX = W - 56, r = 56;
-
+      const leftX = 56, rightX = W - 56, r = 56;
       const d = [
         `M ${cx} ${startY}`,
         `L ${leftX + r} ${startY}`,
@@ -849,13 +551,41 @@
         `Q ${rightX} ${endY} ${rightX - r} ${endY}`,
         `L ${cx} ${endY}`
       ].join(' ');
-
       pathEl.setAttribute('d', d);
     }
-
     window.addEventListener('load', buildDashedPath);
     window.addEventListener('resize', buildDashedPath);
-  </script>
 
+    /* МАСКА ТЕЛЕФОНА */
+    function initPhoneMask(input) {
+      input.addEventListener('input', function () {
+        let v = this.value.replace(/\D/g, '');
+        if (v.startsWith('8')) v = '7' + v.slice(1);
+        if (v.startsWith('7')) {
+          let r = '+7';
+          if (v.length > 1) r += ' (' + v.slice(1, 4);
+          if (v.length >= 4) r += ') ' + v.slice(4, 7);
+          if (v.length >= 7) r += '-' + v.slice(7, 9);
+          if (v.length >= 9) r += '-' + v.slice(9, 11);
+          this.value = r;
+        } else {
+          this.value = v.length ? '+' + v.slice(0, 15) : '';
+        }
+      });
+    }
+    document.querySelectorAll('input[type="tel"]').forEach(initPhoneMask);
+
+    /* КУКИ */
+    (function () {
+      if (localStorage.getItem('cookiesOk')) return;
+      const banner = document.getElementById('cookieBanner');
+      banner.style.display = 'flex';
+      document.getElementById('cookieOk').addEventListener('click', () => {
+        localStorage.setItem('cookiesOk', '1');
+        banner.style.opacity = '0';
+        setTimeout(() => banner.remove(), 300);
+      });
+    })();
+  </script>
 </body>
 </html>
