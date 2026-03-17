@@ -1,1 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Политика конфиденциальности — Profitsol</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #F7F7F5; --surface: #ffffff; --accent: #0A0A0A; --muted: #7A7A7A; --border: #E4E4E0; --radius: 16px; --font: 'Manrope', Arial, sans-serif; }
+    body { font-family: var(--font); background: var(--bg); color: var(--accent); -webkit-font-smoothing: antialiased; }
 
+    header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 20px 72px; border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 0; z-index: 100; }
+    .header-logo { width: 180px; height: 60px; background: var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; justify-self: start; text-decoration: none; }
+    .header-logo span { font-size: 11px; color: var(--muted); }
+    nav { display: flex; align-items: center; gap: 28px; }
+    nav a { font-size: 14px; font-weight: 500; color: #4A4A4A; text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+    nav a:hover { color: var(--accent); }
+    .header-right { display: flex; align-items: center; gap: 24px; justify-self: end; }
+    .header-phone { font-size: 14px; font-weight: 500; color: #4A4A4A; text-decoration: none; white-space: nowrap; transition: color 0.2s; }
+    .header-phone:hover { color: var(--accent); }
+    .btn-dark { display: inline-flex; align-items: center; justify-content: center; background: var(--accent); color: #fff; border: none; border-radius: 100px; font-family: var(--font); font-weight: 600; cursor: pointer; text-decoration: none; text-align: center; transition: opacity 0.2s; white-space: nowrap; flex-shrink: 0; }
+    .btn-dark:hover { opacity: 0.75; }
+    .btn-sm { padding: 10px 20px; font-size: 13px; line-height: 1.35; }
+
+    .burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; justify-self: end; }
+    .burger span { display: block; width: 22px; height: 2px; background: var(--accent); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu a { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+    .mobile-menu a:hover { opacity: 0.5; }
+    .mobile-menu .mobile-phone { font-size: 16px; font-weight: 500; color: var(--muted); margin-top: 8px; }
+
+    /* HERO */
+    .page-hero { padding: 48px 72px 40px; max-width: 1400px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+    .page-hero-label { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+    .page-hero-title { font-size: clamp(28px, 4vw, 48px); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; max-width: 700px; }
+    .page-hero-sub { margin-top: 14px; font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* КОНТЕНТ */
+    .privacy-wrap { max-width: 860px; margin: 0 auto; padding: 56px 72px 80px; }
+
+    .privacy-section { margin-bottom: 40px; }
+    .privacy-section:last-child { margin-bottom: 0; }
+
+    .privacy-section h2 {
+      font-size: 18px; font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 16px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .privacy-section p { font-size: 14px; color: #3A3A3A; line-height: 1.75; margin-bottom: 12px; }
+    .privacy-section p:last-child { margin-bottom: 0; }
+
+    .privacy-section ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+    .privacy-section ul li { font-size: 14px; color: #3A3A3A; line-height: 1.6; display: flex; align-items: flex-start; gap: 10px; }
+    .privacy-section ul li::before { content: ''; display: block; width: 4px; height: 4px; border-radius: 50%; background: var(--muted); flex-shrink: 0; margin-top: 8px; }
+
+    .privacy-reqs { list-style: none; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 16px; }
+    .privacy-reqs li { display: grid; grid-template-columns: 200px 1fr; gap: 16px; padding: 12px 20px; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .privacy-reqs li:last-child { border-bottom: none; }
+    .privacy-reqs .rk { color: var(--muted); font-weight: 500; }
+    .privacy-reqs .rv { color: var(--accent); font-weight: 600; }
+    .privacy-reqs a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--border); transition: border-color 0.2s; }
+    .privacy-reqs a:hover { border-color: var(--accent); }
+
+    .cookies-table { width: 100%; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 12px; }
+    .cookies-table th { background: var(--bg); font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+    .cookies-table td { font-size: 13px; color: #3A3A3A; padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    .cookies-table tr:last-child td { border-bottom: none; }
+
+    footer { border-top: 1px solid var(--border); padding: 48px 72px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; align-items: start; }
+    .footer-left { display: flex; flex-direction: column; gap: 16px; }
+    .footer-logo { width: 140px; height: 48px; background: var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; }
+    .footer-logo span { font-size: 11px; color: var(--muted); }
+    .footer-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .footer-nav { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+    .footer-nav a { font-size: 14px; font-weight: 500; color: #4A4A4A; text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--accent); }
+    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
+    .footer-copy { font-size: 12px; color: var(--muted); text-align: right; line-height: 1.5; }
+    .footer-reqs { font-size: 11px; color: #B0B0A8; text-align: right; line-height: 1.6; }
+
+    @media (max-width: 900px) {
+      header { padding: 16px 24px; grid-template-columns: 1fr auto; }
+      header nav, header .header-right { display: none; }
+      .burger { display: flex; }
+      .page-hero { padding: 36px 24px 28px; }
+      .privacy-wrap { padding: 36px 24px 56px; }
+      footer { grid-template-columns: 1fr; padding: 40px 24px; }
+      .footer-right { align-items: flex-start; }
+      .footer-copy, .footer-reqs { text-align: left; }
+      .privacy-reqs li { grid-template-columns: 1fr; gap: 2px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/" onclick="closeMobile()">главная</a>
+    <a href="/services" onclick="closeMobile()">услуги</a>
+    <a href="/#pricing" onclick="closeMobile()">тарифы</a>
+    <a href="/contacts" onclick="closeMobile()">контакты</a>
+    <a href="tel:88002502562" class="mobile-phone">8 800 250 25 62</a>
+  </div>
+
+  <header>
+    <a href="/" class="header-logo"><span>логотип</span></a>
+    <nav>
+      <a href="/">главная</a>
+      <a href="/services">услуги</a>
+      <a href="/#pricing">тарифы</a>
+      <a href="/contacts">контакты</a>
+    </nav>
+    <div class="header-right">
+      <a href="tel:88002502562" class="header-phone">8 800 250 25 62</a>
+      <a href="/contacts" class="btn-dark btn-sm">бесплатный<br/>экспресс-аудит</a>
+    </div>
+    <button class="burger" id="burger" aria-label="меню"><span></span><span></span><span></span></button>
+  </header>
+
+  <div class="page-hero">
+    <span class="page-hero-label">документы</span>
+    <h1 class="page-hero-title">Политика конфиденциальности и обработки персональных данных</h1>
+    <p class="page-hero-sub">Дата обновления: 24.02.2026</p>
+  </div>
+
+  <div class="privacy-wrap">
+
+    <div class="privacy-section">
+      <h2>1. Оператор и контактные данные</h2>
+      <p>Оператор персональных данных: Профессиональные ИТ решения (ИП Пак Дмитрий Анатольевич).</p>
+      <ul class="privacy-reqs">
+        <li><span class="rk">Адрес для обращений</span><span class="rv">350005, Краснодарский край, г. Краснодар, ул. им. Григория Булгакова, д. 8, к. 1, кв. 289</span></li>
+        <li><span class="rk">ИНН</span><span class="rv">231515970983</span></li>
+        <li><span class="rk">ОГРНИП</span><span class="rv">314231229500102</span></li>
+        <li><span class="rk">Серия и номер свидетельства</span><span class="rv">23 009169033</span></li>
+        <li><span class="rk">Дата регистрации</span><span class="rv">22.10.2014</span></li>
+        <li><span class="rk">Телефон</span><span class="rv"><a href="tel:88002502562">8 800 250-25-62</a></span></li>
+        <li><span class="rk">E-mail руководителя</span><span class="rv"><a href="mailto:d.pak@profitsol.ru">d.pak@profitsol.ru</a></span></li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h2>2. Термины</h2>
+      <p>«Персональные данные» — любая информация, относящаяся к прямо или косвенно определённому или определяемому физическому лицу.</p>
+      <p>«Обработка» — любое действие (операция) или совокупность действий с персональными данными.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>3. Какие данные мы можем собирать</h2>
+      <ul>
+        <li>Данные из формы: имя, телефон, e-mail, компания, комментарий/задача.</li>
+        <li>Предпочитаемая дата и время связи (если вы выбрали этот вариант).</li>
+        <li>Технические данные: IP-адрес, тип устройства/браузера, страницы, которые вы посещали, файлы cookies. Необходимые cookies нужны для работы сайта, аналитические и маркетинговые — включаются только после вашего выбора.</li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h2>4. Цели обработки</h2>
+      <ul>
+        <li>Связаться с вами и ответить на запрос, подготовить расчёт стоимости.</li>
+        <li>Вести переписку и историю обращений (в т.ч. статусы в тикет-системе).</li>
+        <li>Исполнять договор и обеспечивать сопровождение (если вы становитесь клиентом).</li>
+        <li>Улучшать качество сайта и услуг (при согласии на аналитические cookies).</li>
+        <li>Показывать более релевантную рекламу/ретаргетинг (при согласии на маркетинговые cookies).</li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h2>5. Правовые основания</h2>
+      <p>Мы обрабатываем данные на основании вашего согласия (например, отправка формы, выбор cookies), а также для исполнения договора и законных обязанностей оператора (в применимых случаях).</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>6. Cookies и аналитика</h2>
+      <p>На сайте используются необходимые cookies для корректной работы сайта. Аналитические и маркетинговые cookies включаются только после вашего выбора в баннере.</p>
+      <table class="cookies-table">
+        <thead><tr><th>Тип</th><th>Описание</th></tr></thead>
+        <tbody>
+          <tr><td>Необходимые</td><td>Нужны для работы сайта и формы.</td></tr>
+          <tr><td>Аналитические</td><td>Яндекс.Метрика — статистика посещений и улучшение сайта (по согласию).</td></tr>
+          <tr><td>Маркетинговые</td><td>Рекламные пиксели и ретаргетинг (по согласию).</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="privacy-section">
+      <h2>7. Используемые сервисы и получатели данных</h2>
+      <ul>
+        <li>Хостинг сайта (размещение сайта и техническая инфраструктура в РФ).</li>
+        <li>Почта (переписка по обращению и отправка информации по запросу).</li>
+        <li>Тикет-система Kayten — фиксация обращений и статусов.</li>
+        <li>Яндекс.Метрика (аналитика посещаемости) — только при согласии на аналитические cookies.</li>
+        <li>Рекламные пиксели/ретаргетинг — только при согласии на маркетинговые cookies.</li>
+      </ul>
+      <p>Мы передаём данные третьим лицам только в объёме, необходимом для достижения указанных целей, и при наличии правовых оснований.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>8. Место хранения и трансграничная передача</h2>
+      <p>Оператор не осуществляет трансграничную передачу персональных данных. Обработка и хранение организованы на территории Российской Федерации.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>9. Сроки хранения</h2>
+      <p>Данные обращений (заявки, переписка, история статусов) хранятся до 3 лет с момента последнего взаимодействия, если более длительный срок не требуется законом или договором.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>10. Защита персональных данных</h2>
+      <ul>
+        <li>Ограничение доступа к данным (по ролям), учёт и контроль доступов.</li>
+        <li>Резервное копирование и контроль восстановления.</li>
+        <li>Использование актуальных средств защиты и обновлений.</li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h2>11. Ваши права</h2>
+      <p>Вы можете запросить уточнение, блокирование или удаление ваших данных, а также отозвать согласие на обработку, написав на <a href="mailto:d.pak@profitsol.ru" style="color:var(--accent);">d.pak@profitsol.ru</a>.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>12. Обновление политики</h2>
+      <p>Мы можем обновлять настоящую Политику. Актуальная версия всегда доступна на этой странице.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-left">
+      <a href="/" class="footer-logo"><span>логотип</span></a>
+      <p class="footer-desc">комплексное сопровождение 1С по всей России.</p>
+    </div>
+    <nav class="footer-nav">
+      <a href="/">главная</a>
+      <a href="/services">услуги</a>
+      <a href="/#pricing">тарифы</a>
+      <a href="/contacts">контакты</a>
+      <a href="/privacy">политика конфиденциальности</a>
+    </nav>
+    <div class="footer-right">
+      <p class="footer-copy">© 2026 ИП Пак Дмитрий Анатольевич.<br/>Все права защищены.</p>
+      <p class="footer-reqs">ИНН: 231515970983 | ОГРНИП: 314231229500102</p>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    burger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      mobileMenu.style.display = open ? 'flex' : 'none';
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    function closeMobile() { mobileMenu.classList.remove('open'); burger.classList.remove('open'); mobileMenu.style.display = 'none'; document.body.style.overflow = ''; }
+  </script>
+</body>
+</html>
